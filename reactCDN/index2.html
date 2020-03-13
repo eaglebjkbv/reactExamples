@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    
+    <title>Document</title>
+</head>
+<body>
+   <div id="app"></div> 
+
+   <script type="text/babel">
+        class App extends React.Component {
+
+            state={
+                name:'Bülent',
+                age:43
+            }
+
+            handelChange=(e)=>{
+                this.setState({
+                    name: e.target.value
+                });
+            }
+            
+            handleSubmit=(e)=>{
+                e.preventDefault(); // Bu sayfanın refresh olmasını engeller
+                console.log("Form ",this.state.name," olarak onaylandı")
+            }
+            render(){
+                return (
+                    <div className="app-content">
+                        <h1>Merhaba </h1>
+                        <p>Benim Adım: {this.state.name}  </p>
+                        <form onSubmit={this.handleSubmit}>
+                            <input type="text" onChange={this.handelChange}/>
+                            <button>Onayla </button>
+
+                            
+                        </form>
+                        
+                    </div>
+                )
+            }
+    }
+    ReactDOM.render(<App/>,document.getElementById("app"));
+
+   </script>
+</body>
+</html>
